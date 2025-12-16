@@ -230,24 +230,36 @@
         });
       }
     </script>
+    <script>
+      function checkPassword() {
+        const pw = document.getElementById('pw').value;
+        const error = document.getElementById('pw-error');
+    
+        if (pw === 'Websitegames') {
+          error.style.display = 'none';
+    
+          document.getElementById('password-area').style.display = 'none';
+          const content = document.getElementById('content');
+          content.style.display = 'block';
+          setTimeout(() => content.classList.add('show'), 10);
+    
+          startInactivityRefresh(); // keep your inactivity refresh
+        } else {
+          error.style.display = 'block';
+        }
+      }
+    </script>
+
 
     <!-- Password input area -->
     <img class="wobble" src="Title.png" alt="Title" onclick="window.location.href='https://www.google.com/search?sca_esv=d44b221d688bac1f&rlz=1CAUYOS_enUS1176&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeoJTKjrFjVxydQWqI2NcOha3O1YqG67F0QIhAOFN_ob1yXos5K_Qo9Tq-0cVPzex8YVosMX4HbDUrR7LivhWnk0FuAZVXvp62Oi2LViZ2OMmfytS7nNJKwjX-dfWDM13u79Ad-ozOsBhPchmVRVEnbtWFJzd1HixniG-pG3cQciEsrkJqA&q=Nigger&sa=X&ved=2ahUKEwiOleXau7ORAxXVFTQIHfkdBkwQtKgLegQIFxAB&biw=1366&bih=599&dpr=1&safe=active&ssui=on';" style="cursor:pointer;">
     <div id="password-area">
       <input type="password" id="pw" placeholder="Enter password">
-      <button id="submit-btn" onclick="
-        if(document.getElementById('pw').value==='Websitegames'){
-        document.getElementById('password-area').style.display='none';
-        var content = document.getElementById('content');
-        content.style.display='block';
-        setTimeout(() => { content.classList.add('show'); }, 10);
-        startInactivityRefresh();
-      } else { 
-        alert('Wrong password Please Try Again'); 
-      }
-      ">
-      Enter
-      </button>
+      <button id="submit-btn" onclick="checkPassword()">Enter</button>
+      <p id="pw-error" style="color:red; display:none; margin-top:10px;">
+        Wrong password
+      </p>
+
     </div>
     <!-- Hidden content revealed after password -->
     <div id="content">
