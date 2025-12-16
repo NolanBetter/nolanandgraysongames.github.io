@@ -142,15 +142,78 @@
         70%  { transform: scale(1.1); }
         100% { transform: scale(1); }
       }
+      /* Warning overlay */
+      #unofficial-warning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .warning-box {
+        background: black;
+        border: 2px solid red;
+        padding: 30px;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 0 20px red;
+      }
+      
+      .warning-box h2 {
+        color: red;
+      }
+      
+      .official-link {
+        color: yellow;
+        word-break: break-all;
+      }
+      
+      .warning-box button {
+        margin-top: 20px;
+        padding: 10px 25px;
+        font-size: 18px;
+        background: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      
+      .warning-box button:hover {
+        transform: scale(1.1);
+      }
+
     </style>
   </head>
   <body>
+    <!-- Unofficial Site Warning -->
+    <div id="unofficial-warning">
+      <div class="warning-box">
+        <h2>⚠ Not an Official Link</h2>
+        <p>
+          You are viewing an unofficial copy of this website.<br><br>
+          The only official site is:
+        </p>
+        <p class="official-link">
+          https://www.nolangraysongames.com
+        </p>
+        <button onclick="closeWarning()">Continue Anyway</button>
+      </div>
+    </div>
+    
     <!-- Password input area -->
     <img class="wobble" src="Title.png" alt="Title" onclick="window.location.href='https://www.google.com/search?sca_esv=d44b221d688bac1f&rlz=1CAUYOS_enUS1176&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeoJTKjrFjVxydQWqI2NcOha3O1YqG67F0QIhAOFN_ob1yXos5K_Qo9Tq-0cVPzex8YVosMX4HbDUrR7LivhWnk0FuAZVXvp62Oi2LViZ2OMmfytS7nNJKwjX-dfWDM13u79Ad-ozOsBhPchmVRVEnbtWFJzd1HixniG-pG3cQciEsrkJqA&q=Nigger&sa=X&ved=2ahUKEwiOleXau7ORAxXVFTQIHfkdBkwQtKgLegQIFxAB&biw=1366&bih=599&dpr=1&safe=active&ssui=on';" style="cursor:pointer;">
     <div id="password-area">
       <input type="password" id="pw" placeholder="Enter password">
       <button id="submit-btn" onclick="
-        if(document.getElementById('pw').value==='Grayson'){
+        if(document.getElementById('pw').value==='Websitegames'){
         document.getElementById('password-area').style.display='none';
         var content = document.getElementById('content');
         content.style.display='block';
@@ -245,8 +308,11 @@
       <a href="https://gn-mathgithubio-main-7-17237044.codehs.me/index.html">gn-math #10</a>
       <a href="https://new-sandbox-program-82-17205112.codehs.me/index.html">Encoder/Decoder</a>
       <a href="https://new-sandbox-program-83-17227451.codehs.me/index.html">Data URL Converter</a>
+      <a href="https://course.how.laurengillett.com/">Utopia #1</a>
+      <a href="https://study.info.scallex.net/">Utopia #2</a>
       <a class="pageb" href="https://securly.com.mtomtech.co.kr/"> Study.com (Roblox)</a>
       <a class="pageb" href="https://rblx-7918337.codehs.me/">Roblox</a>
+      <h5>For Most Utopia Links Refresh page after opening link</h5>
       <h5>Roblox User #1 - Username:gest15439 - Password:nolangraysongames</h5>
       <h5>Roblox User #2 - Username:gamingatschool_gb - Password:nolangraysongames</h5>
       <h5>Roblox User #3 - Username:schoolgaming553 - Password:nolangraysongames</h5>
@@ -278,8 +344,19 @@
       <a class="discord" href="https://discord.gg/nNCWgRJZ7v">Discord</a>
       
       <p>On November 13th, 2025 at 12:36pm Grayson Barnes And Nolan Boyer Made A Promise To Never Share This Website With Anyone Or Share Any Links on here until 2030. On November 17,2025 at 7:43am Nolan Boyer And Joseph Dransfield Promised to not share any links on this website With anyone except for Grayson Barnes until 2030.All Other user that join agree to the rules found on the Rules page.</p>
-      <h6>Last Updated On 12/14/25 By Nolan Boyer Via Github.</h6>
+      <h6>Last Updated On 12/16/25 By Nolan Boyer Via Github.</h6>
       <img class="smallimg" src="Logo.png" alt="Logo">
     </div>
+    <script>
+      const officialOrigin = "https://www.nolangraysongames.com";
+    
+      if (window.location.origin !== officialOrigin) {
+        document.getElementById("unofficial-warning").style.display = "flex";
+      }
+    
+      function closeWarning() {
+        document.getElementById("unofficial-warning").style.display = "none";
+      }
+  </script>
   </body>
 </html>
