@@ -365,25 +365,31 @@
       function searchLinks() {
         const input = document.getElementById("search").value.toLowerCase();
         const links = document.querySelectorAll("#content a");
-    
+        const headers = document.querySelectorAll("#content h2"); // select all h2 in content
+      
+        // Show/hide links based on search
         links.forEach(link => {
           const text = link.textContent.toLowerCase();
           link.style.display = text.includes(input) ? "inline-block" : "none";
         });
+      
+        // Show/hide headers based on search input
+        headers.forEach(h => {
+          h.style.display = input ? "none" : "block";
+        });
       }
-    </script>
-    <script>
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          const search = document.getElementById("search");
-          if (search) {
-            search.value = "";
-            searchLinks(); // show all links again
+      </script>
+      <script>
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            const search = document.getElementById("search");
+              if (search) {
+                search.value = "";
+                searchLinks(); // show all links again
+              }
           }
-        }
       });
     </script>
-
     <script>
       function clearSearch() {
         const search = document.getElementById("search");
