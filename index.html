@@ -197,10 +197,21 @@
       .warning-box button:hover {
         transform: scale(1.1);
       }
+      #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* stays behind everything */
+        background: black;
+      }
+
 
     </style>
   </head>
   <body>
+    <canvas id="bg"></canvas>
     <!-- Unofficial Site Warning -->
     <div id="unofficial-warning">
       <div class="warning-box">
@@ -257,10 +268,59 @@
         }
       }
     </script>
-
-
+    <script>
+      document.querySelectorAll('a').forEach(a => a.target = '_blank');
+    </script>
+    <script>
+      const officialOrigin = "https://www.nolangraysongames.com";
+    
+      if (window.location.origin !== officialOrigin) {
+        document.getElementById("unofficial-warning").style.display = "flex";
+      }
+    
+      function closeWarning() {
+        document.getElementById("unofficial-warning").style.display = "none";
+      }
+    </script>
+    <script>
+      const canvas = document.getElementById("bg");
+      const ctx = canvas.getContext("2d");
+    
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resize);
+      resize();
+    
+      const stars = Array.from({ length: 120 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        s: Math.random() * 0.3 + 0.1
+      }));
+    
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "white";
+    
+        stars.forEach(star => {
+          star.y += star.s;
+          if (star.y > canvas.height) star.y = 0;
+    
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+    
+        requestAnimationFrame(animate);
+      }
+    
+      animate();
+    </script>
+    
     <!-- Password input area -->
-    <img class="wobble" src="Title.png" alt="Title" onclick="window.location.href='https://www.google.com/search?sca_esv=d44b221d688bac1f&rlz=1CAUYOS_enUS1176&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeoJTKjrFjVxydQWqI2NcOha3O1YqG67F0QIhAOFN_ob1yXos5K_Qo9Tq-0cVPzex8YVosMX4HbDUrR7LivhWnk0FuAZVXvp62Oi2LViZ2OMmfytS7nNJKwjX-dfWDM13u79Ad-ozOsBhPchmVRVEnbtWFJzd1HixniG-pG3cQciEsrkJqA&q=Nigger&sa=X&ved=2ahUKEwiOleXau7ORAxXVFTQIHfkdBkwQtKgLegQIFxAB&biw=1366&bih=599&dpr=1&safe=active&ssui=on';" style="cursor:pointer;">
+    <img class="wobble" src="Title.png" alt="Title" onclick="window.location.href='https://www.nolangrayson.com';" style="cursor:pointer;">
     <div id="password-area">
       <input type="password" id="pw" placeholder="Enter password">
       <button id="submit-btn" onclick="checkPassword()">Enter</button>
@@ -392,16 +452,5 @@
       <h6>Last Updated On 12/16/25 By Nolan Boyer Via Github.</h6>
       <img class="smallimg" src="Logo.png" alt="Logo">
     </div>
-    <script>
-      const officialOrigin = "https://www.nolangraysongames.com";
-    
-      if (window.location.origin !== officialOrigin) {
-        document.getElementById("unofficial-warning").style.display = "flex";
-      }
-    
-      function closeWarning() {
-        document.getElementById("unofficial-warning").style.display = "none";
-      }
-  </script>
   </body>
 </html>
